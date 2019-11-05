@@ -1,10 +1,10 @@
 <div class="row">
     <nav class="nav flex-column bg-light sidebar d-none d-sm-block ">
         <div class="sidebar-sticky">
-          <a class="nav-link active" href="#">Buy</a>
-          <a class="nav-link" href="#">Sell</a>
-          <a class="nav-link" href="#">My Orders</a>
-          <a class="nav-link" href="#">My Favorites</a>
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact : true}">Buy</a>
+          <a class="nav-link" routerLink="/sell_path" routerLinkActive="active">Sell</a>
+          <a class="nav-link" routerLink="/order_link" routerLinkActive="active">My Orders</a>
+          <a class="nav-link" routerLink="/favorites" routerLinkActive="active">My Favorites</a>
           </div>
         </nav>
         
