@@ -1,0 +1,62 @@
+<div class="container bg-info text-white border border-dark rounded py-5 login_box">
+  <div class="row">
+  <div class="col-12 text-center pb-5">
+  <p class="h1">Sell & Buy - Login</p>
+  </div>
+  </div>
+  
+  <div class="row">
+  <div class="col-sm-6">
+  <div class="row">
+  <div class="col-sm-12 col-6">
+  <img src="imgs/sell_buy_logo.jpg" alt="logo" class="rounded-top logo_img" />
+  </div>
+  <div class="col-sm-12 col-6">
+  <blockquote class="blockquote mt-3">
+    <p class="mb-0">Buy the truth and do not sell it.</p>
+    <footer class="blockquote-footer">wisdom, instruction and insight as well. </footer>
+  </blockquote>
+  </div>
+  </div>
+  </div>
+  <div class="col-sm-6">
+  <form id="login_form">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" 
+      id="exampleInputEmail1" aria-describedby="emailHelp" 
+      placeholder="Enter email" required
+      (input)="checkEmail($event)">
+      <small id="emailHelp" class="form-text text-warning">We'll never share your email with anyone else : {{ myEmail }}</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail2">Repeat Email address</label>
+      <input type="email" class="form-control" 
+      id="exampleInputEmail2"
+      name="email2" 
+      placeholder="Enter email" required
+      [(ngModel)]="myEmail">
+      </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+    </div>
+  
+    <button type="submit" class="btn btn-warning">Submit</button>
+  </form>
+  <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+    Address email or password is wrong! please try again
+    <button type="button" class="close" data-hide="alert" aria-label="Hide">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  </div>
+  </div>
+  
+  <div class="row pt-3">
+  <div class="col-12 text-right">
+  <p><a href="./registration.html" class="text-dark">Create an account</a></p>
+  </div>
+  </div>
+  
+  </div> 

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -11,6 +12,8 @@ import { SellComponent } from './sell/sell.component';
 import { OrdersComponent } from './orders/orders.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
 { path : '', component : ContentComponent },
@@ -30,11 +33,14 @@ const appRoutes: Routes = [
     ItemComponent,
     SellComponent,
     OrdersComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
