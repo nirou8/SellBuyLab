@@ -14,8 +14,10 @@
   <div class="col-sm-12 col-6">
   <blockquote class="blockquote mt-3">
     <p class="mb-0">Buy the truth and do not sell it.</p>
-    <footer class="blockquote-footer">wisdom, instruction and insight as well. </footer>
+
+    <footer [ngClass]="{'blockquote-footer' : isOK, 'footerFont' : fSize > 45}" [ngStyle]="{'color' : fColor, 'border' : 'solid 1px', 'border-color' : fColor}">wisdom, instruction and insight as well. </footer>
   </blockquote>
+  <input type="color" name="cl" [(ngModel)]="fColor">
   </div>
   </div>
   </div>
@@ -55,7 +57,7 @@
   
   <div class="row pt-3">
   <div class="col-12 text-right">
-  <p><a href="./registration.html" class="text-dark">Create an account</a></p>
+  <p><a routerLink="/registration" class="text-dark">Create an account</a></p>
   </div>
   </div>
   

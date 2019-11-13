@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 myEmail : string = '';
-  constructor() { }
+fColor : string = "#ff0000";
+isOK = false;
+fSize = 23;
+  constructor() {
+   
+  }
 
   ngOnInit() {
   }

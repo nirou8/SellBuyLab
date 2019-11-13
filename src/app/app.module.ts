@@ -14,9 +14,11 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 const appRoutes: Routes = [
 { path : '', component : ContentComponent },
+{ path : 'registration', component : RegistrationComponent },
 { path : 'sell_path', component : SellComponent },
 { path : 'order_link', component : OrdersComponent },
 { path : 'favorites', component : FavoritesComponent },
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     OrdersComponent,
     FavoritesComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

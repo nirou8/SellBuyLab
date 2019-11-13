@@ -14,10 +14,10 @@ body{
 	height : 200px;
 }
 
-.alert{
-	display: none;
+.gender_lb, .categories_lb{
+	display : block;
 }
 
-.footerFont{
-	font-size: 45px!important;
+.errorStyle2{
+    border : dashed 2px #924242;
 }
