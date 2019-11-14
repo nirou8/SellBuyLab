@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ myEmail : string = '';
 fColor : string = "#ff0000";
 isOK = false;
 fSize = 23;
-  constructor() {
+  constructor(private router: Router) {
    
   }
 
@@ -20,5 +21,11 @@ fSize = 23;
   checkEmail(event: Event){
     console.log(event);
     this.myEmail = (<HTMLInputElement> event.target).value;
+  }
+
+  loginUser(){
+    //Some code to check about the credentials if are correct or not ....
+
+    this.router.navigate(['/home']);
   }
 }

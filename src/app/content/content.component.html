@@ -9,11 +9,7 @@
     <div class="col-12 mb-5">
     <div class="row">
         <div *ngFor="let i of laptops; let x = index" class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-2">
-      <app-item></app-item>
-      this product has the index {{ x }}
-{{ i.name }}
-{{ i.price }}
-{{ i.description }}
+      <app-item [laptop]="i"></app-item>
       </div>
       
     </div>
