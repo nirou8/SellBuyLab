@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,7 @@ connectedUser = {
     city: '',
     zip: ''
 }
-
+@ViewChild('f') loginForm : NgForm;
 @ViewChild('password') password: ElementRef;
 @ViewChild('sm') smm: ElementRef;
 
@@ -32,14 +34,15 @@ fSize = 23;
   }
 
 
-  loginUser(e){
-    console.log(this.smm.nativeElement.innerText);
-    console.log(this.password.nativeElement.value);
+  loginUser(){
+    console.log(this.loginForm.value.email);
+    console.log(this.loginForm.value.password);
+
     let wrongCredentials = true;
    let accounts = JSON.parse(localStorage["accounts"]);
    for(let account of accounts){
-     if(e.value == account.email && 
-      this.password.nativeElement.value == account.password ){
+     if(this.loginForm.value.email == account.email && 
+      this.loginForm.value.password == account.password ){
         wrongCredentials = false;
         this.router.navigate(['/home']);
       }
