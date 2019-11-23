@@ -20,13 +20,13 @@
   </div>
   </div>
   <div class="col-sm-6">
-  <form>
+  <form (submit)="createAccount()">
   <div class="form-row mt-3 mt-sm-0">
       <div class="col">
-        <input type="text" class="form-control" placeholder="First name">
+        <input type="text" class="form-control" name="fname" [(ngModel)]="account.first_name" placeholder="First name">
       </div>
       <div class="col">
-        <input type="text" class="form-control" placeholder="Last name">
+        <input type="text" class="form-control" name="lname" [(ngModel)]="account.last_name" placeholder="Last name">
       </div>
     </div>
     <div class="form-group">
@@ -34,7 +34,7 @@
       <div class="input-group-prepend">
         <div class="input-group-text">@</div>
       </div>
-      <input type="email" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Email">
+      <input type="email" class="form-control" name="email" [(ngModel)]="account.email" id="inlineFormInputGroupUsername2" placeholder="Email" required>
     </div>
     </div>
     <div class="form-group">
@@ -45,7 +45,7 @@
       <input type="password" class="form-control" 
       name="pass1" [(ngModel)]="pass1" (input)="checkPasswordMatching()"
       [ngStyle]="{'border' : errorStyle}"
-      id="InputPassword1" placeholder="Password">
+      id="InputPassword1" placeholder="Password" required>
     </div>
       </div>
     
@@ -57,7 +57,7 @@
       <input type="password" class="form-control" 
       name="pass2" [(ngModel)]="pass2" id="InputPassword2" 
       (input)="checkPasswordMatching()" [ngClass]="{errorStyle2 : errorStyle != 'none'}"
-      placeholder="Confirm password">
+      placeholder="Confirm password" required>
     </div>
       </div>
       <div  *ngIf="errorStyle != 'none'; else matching">
@@ -88,19 +88,19 @@
       </div>
       {{ isDisabled }}
       <div class="col-md-6 mb-3">
-        <input type="text" class="form-control" [disabled]="isDisabled==''" name="city" [(ngModel)]="city" id="validationDefault03" placeholder="City" required>
+        <input type="text" class="form-control" [disabled]="isDisabled==''" name="city" [(ngModel)]="account.city" id="validationDefault03" placeholder="City" required>
       </div>
-      {{ city }}
+      {{ account.city }}
     </div>
     <div class="form-row">
       <div class="col-md-6 mb-3">
-        <input type="text" class="form-control" [disabled]="isDisabled==''" name="state" [(ngModel)]="state" id="validationDefault04" placeholder="State" required>
+        <input type="text" class="form-control" [disabled]="isDisabled==''" name="state" [(ngModel)]="account.state" id="validationDefault04" placeholder="State" required>
       </div>
-      {{ state }}
+      {{ account.state }}
       <div class="col-md-6 mb-3">
-        <input type="text" class="form-control" [disabled]="isDisabled==''" name="zip" [(ngModel)]="zip" id="validationDefault05" placeholder="Zip" required>
+        <input type="text" class="form-control" [disabled]="isDisabled==''" name="zip" [(ngModel)]="account.zip" id="validationDefault05" placeholder="Zip" required>
       </div>
-      {{ zip }}
+      {{ account.zip }}
     </div>
     
     <label class="gender_lb">Gender</label>
@@ -149,7 +149,8 @@
       <label for="validationTextarea">Description</label>
       <textarea class="form-control" id="validationTextarea" placeholder="what you are interested in?"></textarea>
     </div>
-    <button type="submit" class="btn btn-outline-warning" disabled>Submit</button>
+    <button type="submit" class="btn btn-outline-warning" 
+    [disabled]="isDisabled=='' || errorStyle != 'none'">Submit</button>
   </form>
   </div>
   </div>

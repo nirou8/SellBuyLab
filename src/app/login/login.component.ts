@@ -7,7 +7,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-myEmail : string = '';
+connectedUser = {
+  first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+    country: '',
+    state: '',
+    city: '',
+    zip: ''
+}
 fColor : string = "#ff0000";
 isOK = false;
 fSize = 23;
@@ -18,14 +27,21 @@ fSize = 23;
   ngOnInit() {
   }
 
-  checkEmail(event: Event){
-    console.log(event);
-    this.myEmail = (<HTMLInputElement> event.target).value;
-  }
 
   loginUser(){
-    //Some code to check about the credentials if are correct or not ....
+    let wrongCredentials = true;
+   let accounts = JSON.parse(localStorage["accounts"]);
+   for(let account of accounts){
+     if(this.connectedUser.email == account.email && 
+      this.connectedUser.password == account.password ){
+        wrongCredentials = false;
+        this.router.navigate(['/home']);
+      }
+   }
 
-    this.router.navigate(['/home']);
+   if(wrongCredentials){
+     alert("please verify your email or password")
+   }
+
   }
 }

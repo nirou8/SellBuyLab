@@ -22,29 +22,26 @@
   </div>
   </div>
   <div class="col-sm-6">
-  <form id="login_form">
+  <form id="login_form" (submit)="loginUser()">
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input type="email" class="form-control" 
       id="exampleInputEmail1" aria-describedby="emailHelp" 
       placeholder="Enter email" required
-      (input)="checkEmail($event)">
+      name="email"
+     [(ngModel)]="connectedUser.email">
       <small id="emailHelp" class="form-text text-warning">We'll never share your email with anyone else : {{ myEmail }}</small>
     </div>
-    <div class="form-group">
-      <label for="exampleInputEmail2">Repeat Email address</label>
-      <input type="email" class="form-control" 
-      id="exampleInputEmail2"
-      name="email2" 
-      placeholder="Enter email" required
-      [(ngModel)]="myEmail">
-      </div>
+
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+      <input type="password" class="form-control" 
+      name="password"
+      [(ngModel)]="connectedUser.password"
+      id="exampleInputPassword1" placeholder="Password" required>
     </div>
   
-    <button type="submit" class="btn btn-warning" (click)="loginUser()">Submit</button>
+    <button type="submit" class="btn btn-warning">Submit</button>
   </form>
   <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
     Address email or password is wrong! please try again

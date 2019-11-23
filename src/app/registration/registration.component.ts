@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -6,23 +7,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+
+  account = {
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+    country: '',
+    state: '',
+    city: '',
+    zip: ''
+  };
+
 isDisabled = '';
-city = '';
-state = '';
-zip = '';
 pass1: string;
 pass2: string;
 errorStyle = 'none';
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   onChangeCountry() {
     if (this.isDisabled == '') {
-      this.city = '';
-      this.state = '';
-      this.zip = '';
+      this.account.city = '';
+      this.account.state = '';
+      this.account.zip = '';
     }
   }
 
@@ -33,6 +43,32 @@ errorStyle = 'none';
     }else{
       this.errorStyle = "none"
     }
+  }
+
+  createAccount() {
+    let existingAccount = false;
+    this.account.country = this.isDisabled;
+    this.account.password = this.pass1;
+   if(localStorage['accounts'] ) {
+     let accounts = JSON.parse(localStorage['accounts']);
+     for(let i=0; i<accounts.length; i++){
+       if(this.account.email == accounts[i].email){
+         existingAccount = true;
+         alert("account already existing");
+         break;
+       }
+     }
+
+     if(!existingAccount){
+     accounts.push(this.account)
+     localStorage['accounts'] = JSON.stringify(accounts);
+     this.router.navigate(['/'])
+     }
+   }else{
+    localStorage['accounts'] = JSON.stringify([this.account]);
+    this.router.navigate(['/'])
+   }
+   
   }
 
 }
