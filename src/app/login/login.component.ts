@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,6 +17,10 @@ connectedUser = {
     city: '',
     zip: ''
 }
+
+@ViewChild('password') password: ElementRef;
+@ViewChild('sm') smm: ElementRef;
+
 fColor : string = "#ff0000";
 isOK = false;
 fSize = 23;
@@ -28,12 +32,14 @@ fSize = 23;
   }
 
 
-  loginUser(){
+  loginUser(e){
+    console.log(this.smm.nativeElement.innerText);
+    console.log(this.password.nativeElement.value);
     let wrongCredentials = true;
    let accounts = JSON.parse(localStorage["accounts"]);
    for(let account of accounts){
-     if(this.connectedUser.email == account.email && 
-      this.connectedUser.password == account.password ){
+     if(e.value == account.email && 
+      this.password.nativeElement.value == account.password ){
         wrongCredentials = false;
         this.router.navigate(['/home']);
       }

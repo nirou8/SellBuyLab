@@ -22,7 +22,10 @@ const appRoutes: Routes = [
 { path : 'home', component : HomeComponent, children : [
   { path : '', component : ContentComponent },
   { path : 'sell_path', component : SellComponent },
-  { path : 'order_link', component : OrdersComponent },
+  { path : 'order_link', component : OrdersComponent, children : [
+    { path : 'a', component : FavoritesComponent },
+    { path : 'b', component : RegistrationComponent },
+  ] },
   { path : 'favorites', component : FavoritesComponent },
   { path : 'details/name/:n/desc/:description/p/:price', component : DetailsComponent }
 ] },
