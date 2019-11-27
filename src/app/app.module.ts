@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -15,6 +15,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { DetailsComponent } from './details/details.component';
+import { AddProductComponent } from './add-product/add-product.component';
+
 
 const appRoutes: Routes = [
 { path : '', component : LoginComponent },
@@ -22,14 +24,11 @@ const appRoutes: Routes = [
 { path : 'home', component : HomeComponent, children : [
   { path : '', component : ContentComponent },
   { path : 'sell_path', component : SellComponent },
-  { path : 'order_link', component : OrdersComponent, children : [
-    { path : 'a', component : FavoritesComponent },
-    { path : 'b', component : RegistrationComponent },
-  ] },
+  { path : 'order_link', component : OrdersComponent },
   { path : 'favorites', component : FavoritesComponent },
-  { path : 'details/name/:n/desc/:description/p/:price', component : DetailsComponent }
+  { path : 'details/name/:n/desc/:description/p/:price', component : DetailsComponent },
+  { path : 'add-product', component : AddProductComponent },
 ] },
-
 ];
 
 @NgModule({
@@ -45,12 +44,14 @@ const appRoutes: Routes = [
     LoginComponent,
     HomeComponent,
     RegistrationComponent,
-    DetailsComponent
+    DetailsComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -21,3 +21,7 @@ body{
 .footerFont{
 	font-size: 45px!important;
 }
+
+input.ng-invalid.ng-touched{
+	border : solid 2px red;
+}

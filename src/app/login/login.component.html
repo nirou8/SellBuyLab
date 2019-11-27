@@ -28,9 +28,9 @@
       <input type="email" class="form-control"
       name="email"
       ngModel
-      id="exampleInputEmail1" aria-describedby="emailHelp" 
-      placeholder="Enter email" required>
-      <small id="emailHelp" class="form-text text-warning" #sm>We'll never share your email with anyone else : {{ myEmail }}</small>
+      #em="ngModel"
+      placeholder="Enter email" required email>
+      <small class="form-text text-warning" *ngIf="!em.valid && em.touched">Yuo need to enter a valid Email address</small>
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
@@ -39,7 +39,7 @@
       ngModel
       id="exampleInputPassword1" placeholder="Password" required>
     </div>
-    <button type="submit" class="btn btn-warning">Submit</button>
+    <button type="submit" class="btn btn-warning" [disabled]="!f.valid">Submit</button>
   </form>
   <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
     Address email or password is wrong! please try again

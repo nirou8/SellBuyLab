@@ -21,7 +21,7 @@ connectedUser = {
 }
 @ViewChild('f') loginForm : NgForm;
 @ViewChild('password') password: ElementRef;
-@ViewChild('sm') smm: ElementRef;
+
 
 fColor : string = "#ff0000";
 isOK = false;
@@ -35,8 +35,8 @@ fSize = 23;
 
 
   loginUser(){
-    console.log(this.loginForm.value.email);
-    console.log(this.loginForm.value.password);
+    console.log(this.loginForm);
+  
 
     let wrongCredentials = true;
    let accounts = JSON.parse(localStorage["accounts"]);
