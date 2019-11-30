@@ -2,9 +2,9 @@
         <div class="card" (dblclick)="infos()">
          <img src="imgs/sell_buy_logo.jpg" class="card-img-top" alt="product">
          <div class="card-body">
-           <h5 class="card-title">{{ laptop.name }} - {{ laptop.price }}</h5>
+           <h5 class="card-title">{{ laptop.id }} - {{ laptop.name }} - {{ laptop.price }}</h5>
            <p class="card-text">{{ laptop.description }}</p>
-           <button class="btn btn-primary" [disabled]="btnStatus" [routerLink]="['/home/details/name', laptop.name, 'desc', laptop.description, 'p', laptop.price]" >{{ btnText }}</button>
+           <button class="btn btn-primary" [disabled]="btnStatus" [routerLink]="['/home/details', laptop.id]" >{{ btnText }}</button>
           </div>
        </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProductsService } from '../services/products.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -10,7 +11,7 @@ export class AddProductComponent implements OnInit {
 
   addProductForm : FormGroup;
 
-  constructor(private productsService : ProductsService) { }
+  constructor(private productsService : ProductsService, private router : Router) { }
 
   ngOnInit() {
    this.addProductForm = new FormGroup({
@@ -22,10 +23,12 @@ export class AddProductComponent implements OnInit {
 
   addNewProduct(){
     this.productsService.products.push({
+      id : (this.productsService.products.length + 1),
       name : this.addProductForm.value.name,
       price : this.addProductForm.value.price,
       description : this.addProductForm.value.description,
-    })
+    });
+    this.router.navigate(['/home'])
   }
  
 

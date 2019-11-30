@@ -10,6 +10,7 @@ export class ItemComponent implements OnInit {
   btnText: string = 'See more';
 
   @Input() laptop : {
+    id : number,
     name : string, 
     price : string, 
     description : string

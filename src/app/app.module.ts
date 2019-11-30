@@ -27,7 +27,7 @@ const appRoutes: Routes = [
   { path : 'sell_path', component : SellComponent },
   { path : 'order_link', component : OrdersComponent },
   { path : 'favorites', component : FavoritesComponent },
-  { path : 'details/name/:n/desc/:description/p/:price', component : DetailsComponent },
+  { path : 'details/:id', component : DetailsComponent },
   { path : 'add-product', component : AddProductComponent },
 ] },
 ];
