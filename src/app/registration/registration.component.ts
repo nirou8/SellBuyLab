@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-registration',
@@ -7,6 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  @ViewChild('f') registrationForm: NgForm;
+  categories = [{name : 'books', label : 'Books'}, {name : 'video_games', label : 'Video Games'},
+  {name : 'movies', label : 'Movies'}, {name : 'electonics', label : 'Electonics'},
+  {name : 'music', label : 'Music'}, {name : 'sports', label : 'Sports'}];
 
   account = {
     first_name: '',
@@ -16,59 +21,56 @@ export class RegistrationComponent implements OnInit {
     country: '',
     state: '',
     city: '',
-    zip: ''
+    zip: '',
+    categories : []
   };
 
-isDisabled = '';
-pass1: string;
-pass2: string;
-errorStyle = 'none';
   constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  onChangeCountry() {
-    if (this.isDisabled == '') {
-      this.account.city = '';
-      this.account.state = '';
-      this.account.zip = '';
-    }
-  }
-
-  checkPasswordMatching(){
-    if(this.pass1 !== this.pass2){
-      console.log("Matching Error")
-      this.errorStyle="solid 2px red"
-    }else{
-      this.errorStyle = "none"
-    }
-  }
 
   createAccount() {
+console.log(this.registrationForm);
+this.account.first_name = this.registrationForm.value.fname;
+this.account.last_name = this.registrationForm.value.lname;
+this.account.email = this.registrationForm.value.email;
+this.account.password = this.registrationForm.value.pass1;
+this.account.country = this.registrationForm.value.country;
+this.account.state = this.registrationForm.value.state;
+this.account.city = this.registrationForm.value.city;
+this.account.zip = this.registrationForm.value.zip;
+
+for (const key in this.registrationForm.value.categories) {
+      const selected = this.registrationForm.value.categories[key];
+      if (selected) {
+      this.account.categories.push(key);
+     }
+  }
+
+console.log(this.account);
     let existingAccount = false;
-    this.account.country = this.isDisabled;
-    this.account.password = this.pass1;
-   if(localStorage['accounts'] ) {
-     let accounts = JSON.parse(localStorage['accounts']);
-     for(let i=0; i<accounts.length; i++){
-       if(this.account.email == accounts[i].email){
+    if (localStorage.accounts) {
+     const accounts = JSON.parse(localStorage.accounts);
+     for (let i = 0; i < accounts.length; i++) {
+       if ( this.registrationForm.value.email === accounts[i].email) {
          existingAccount = true;
-         alert("account already existing");
+         alert('account already existing');
          break;
        }
      }
 
-     if(!existingAccount){
-     accounts.push(this.account)
-     localStorage['accounts'] = JSON.stringify(accounts);
-     this.router.navigate(['/'])
+     if (!existingAccount) {
+     accounts.push(this.account);
+     localStorage.accounts = JSON.stringify(accounts);
+     this.router.navigate(['/']);
      }
-   }else{
-    localStorage['accounts'] = JSON.stringify([this.account]);
-    this.router.navigate(['/'])
-   }
-   
+   } else {
+    localStorage.accounts = JSON.stringify([this.account]);
+    this.router.navigate(['/']);
+   } 
+
   }
 
 }

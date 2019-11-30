@@ -20,13 +20,13 @@
   </div>
   </div>
   <div class="col-sm-6">
-  <form (submit)="createAccount()">
+  <form (ngSubmit)="createAccount()" #f="ngForm">
   <div class="form-row mt-3 mt-sm-0">
       <div class="col">
-        <input type="text" class="form-control" name="fname" [(ngModel)]="account.first_name" placeholder="First name">
+        <input type="text" class="form-control" name="fname" ngModel placeholder="First name">
       </div>
       <div class="col">
-        <input type="text" class="form-control" name="lname" [(ngModel)]="account.last_name" placeholder="Last name">
+        <input type="text" class="form-control" name="lname" ngModel placeholder="Last name">
       </div>
     </div>
     <div class="form-group">
@@ -34,7 +34,7 @@
       <div class="input-group-prepend">
         <div class="input-group-text">@</div>
       </div>
-      <input type="email" class="form-control" name="email" [(ngModel)]="account.email" id="inlineFormInputGroupUsername2" placeholder="Email" required>
+      <input type="email" class="form-control" name="email" ngModel id="inlineFormInputGroupUsername2" placeholder="Email">
     </div>
     </div>
     <div class="form-group">
@@ -43,9 +43,7 @@
         <div class="input-group-text">**</div>
       </div>
       <input type="password" class="form-control" 
-      name="pass1" [(ngModel)]="pass1" (input)="checkPasswordMatching()"
-      [ngStyle]="{'border' : errorStyle}"
-      id="InputPassword1" placeholder="Password" required>
+      name="pass1" ngModel placeholder="Password">
     </div>
       </div>
     
@@ -55,29 +53,15 @@
         <div class="input-group-text">**</div>
       </div>
       <input type="password" class="form-control" 
-      name="pass2" [(ngModel)]="pass2" id="InputPassword2" 
-      (input)="checkPasswordMatching()" [ngClass]="{errorStyle2 : errorStyle != 'none'}"
-      placeholder="Confirm password" required>
+      name="pass2" ngModel
+      placeholder="Confirm password">
     </div>
       </div>
-      <div  *ngIf="errorStyle != 'none'; else matching">
-    <p style="color:red">Password and Confirm password are not matching</p>
-  </div>
-  <ng-template #matching>
-  <div>
-      <p style="color:green">Password and Confirm password are matching</p>
-    </div>
-  </ng-template>
-    <!--<ng-template [ngIf]="errorStyle != 'none'">
-      <div>
-    <p style="color:red">Password and Confirm password are not matching</p>
-  </div>
-  </ng-template> -->
 
     <div class="form-row">
     <div class="col-md-6 mb-3">
        
-      <select class="form-control" id="exampleFormControlSelect1" name="country" [(ngModel)]="isDisabled" (change)="onChangeCountry()" required>
+      <select class="form-control" id="exampleFormControlSelect1" name="country" ngModel>
         <option value="">Country</option>
         <option value="canada">Canada</option>
         <option value="india">India</option>
@@ -86,21 +70,17 @@
       </select>
     
       </div>
-      {{ isDisabled }}
       <div class="col-md-6 mb-3">
-        <input type="text" class="form-control" [disabled]="isDisabled==''" name="city" [(ngModel)]="account.city" id="validationDefault03" placeholder="City" required>
+        <input type="text" class="form-control" name="city" ngModel placeholder="City">
       </div>
-      {{ account.city }}
     </div>
     <div class="form-row">
       <div class="col-md-6 mb-3">
-        <input type="text" class="form-control" [disabled]="isDisabled==''" name="state" [(ngModel)]="account.state" id="validationDefault04" placeholder="State" required>
+        <input type="text" class="form-control" name="state" ngModel placeholder="State">
       </div>
-      {{ account.state }}
       <div class="col-md-6 mb-3">
-        <input type="text" class="form-control" [disabled]="isDisabled==''" name="zip" [(ngModel)]="account.zip" id="validationDefault05" placeholder="Zip" required>
+        <input type="text" class="form-control" name="zip" ngModel placeholder="Zip">
       </div>
-      {{ account.zip }}
     </div>
     
     <label class="gender_lb">Gender</label>
@@ -116,32 +96,10 @@
   </div>
   
   <label class="categorie_lb">Categories (preferences)</label>
-    <div class="form-row mb-3">
-   <div class="custom-control custom-checkbox custom-control-inline">
-    <input type="checkbox" class="custom-control-input" id="customCheck1" name="categories">
-    <label class="custom-control-label" for="customCheck1">Books</label>
-  </div>
-  <div class="custom-control custom-checkbox custom-control-inline">
-    <input type="checkbox" class="custom-control-input" id="customCheck2" name="categories">
-    <label class="custom-control-label" for="customCheck2">Video games</label>
-  </div>
-  
-  <div class="custom-control custom-checkbox custom-control-inline">
-    <input type="checkbox" class="custom-control-input" id="customCheck3" name="categories">
-    <label class="custom-control-label" for="customCheck3">Movies</label>
-  </div>
-  <div class="custom-control custom-checkbox custom-control-inline">
-    <input type="checkbox" class="custom-control-input" id="customCheck4" name="categories">
-    <label class="custom-control-label" for="customCheck4">Music</label>
-  </div>
-  
-  <div class="custom-control custom-checkbox custom-control-inline">
-    <input type="checkbox" class="custom-control-input" id="customCheck5" name="categories">
-    <label class="custom-control-label" for="customCheck5">Electronics</label>
-  </div>
-  <div class="custom-control custom-checkbox custom-control-inline">
-    <input type="checkbox" class="custom-control-input" id="customCheck6" name="categories">
-    <label class="custom-control-label" for="customCheck6">Sports</label>
+    <div class="form-row mb-3" ngModelGroup="categories">
+   <div *ngFor="let category of categories; let i= index" class="custom-control custom-checkbox custom-control-inline">
+    <input type="checkbox" class="custom-control-input" id="customCheck{{i}}" name="{{category.name}}" ngModel ng-checked="false">
+    <label class="custom-control-label" for="customCheck{{i}}">{{category.label}}</label>
   </div>
   </div>
   
@@ -149,8 +107,7 @@
       <label for="validationTextarea">Description</label>
       <textarea class="form-control" id="validationTextarea" placeholder="what you are interested in?"></textarea>
     </div>
-    <button type="submit" class="btn btn-outline-warning" 
-    [disabled]="isDisabled=='' || errorStyle != 'none'">Submit</button>
+    <button type="submit" class="btn btn-outline-warning">Submit</button>
   </form>
   </div>
   </div>
