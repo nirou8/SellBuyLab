@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { UsersService } from '../services/users.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ connectedUser = {
 fColor : string = "#ff0000";
 isOK = false;
 fSize = 23;
-  constructor(private router: Router) {
+  constructor(private router: Router, private usersService : UsersService) {
    
   }
 
@@ -39,7 +40,7 @@ fSize = 23;
   
 
     let wrongCredentials = true;
-   let accounts = JSON.parse(localStorage["accounts"]);
+   let accounts = this.usersService.users;
    for(let account of accounts){
      if(this.loginForm.value.email == account.email && 
       this.loginForm.value.password == account.password ){

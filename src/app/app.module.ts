@@ -17,6 +17,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { DetailsComponent } from './details/details.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ProductsService } from './services/products.service';
+import { UsersService } from './services/users.service';
 
 
 const appRoutes: Routes = [
@@ -54,7 +55,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ProductsService],
+  providers: [ProductsService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

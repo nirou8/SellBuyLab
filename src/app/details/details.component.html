@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-12 mt-2 mb-2">
-      <button class="btn btn-info" [routerLink]="['/home/details', id-1]">Prev</button>
-      <button class="btn btn-info"[routerLink]="['/home/details', id+1]">Next</button>
+      <button class="btn btn-info" [disabled]="prevDisabled" [routerLink]="['/home/details', prevId]">Prev</button>
+      <button class="btn btn-info" [disabled]="nextDisabled" [routerLink]="['/home/details', nextId]">Next</button>
     </div>
   <div class="col-12 mt-2 mb-2">
    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-registration',
@@ -25,7 +26,7 @@ export class RegistrationComponent implements OnInit {
     categories : []
   };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private usersService: UsersService) { }
 
   ngOnInit() {
   }
@@ -51,8 +52,8 @@ for (const key in this.registrationForm.value.categories) {
 
 console.log(this.account);
     let existingAccount = false;
-    if (localStorage.accounts) {
-     const accounts = JSON.parse(localStorage.accounts);
+    
+     const accounts = this.usersService.users;
      for (let i = 0; i < accounts.length; i++) {
        if ( this.registrationForm.value.email === accounts[i].email) {
          existingAccount = true;
@@ -62,14 +63,9 @@ console.log(this.account);
      }
 
      if (!existingAccount) {
-     accounts.push(this.account);
-     localStorage.accounts = JSON.stringify(accounts);
+    this.usersService.users.push(this.account);
      this.router.navigate(['/']);
      }
-   } else {
-    localStorage.accounts = JSON.stringify([this.account]);
-    this.router.navigate(['/']);
-   } 
 
   }
 
